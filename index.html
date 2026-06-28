@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filtros de Água</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(160deg, #e0f4ff 0%, #b8e4f9 40%, #d6f0fb 100%);
+    min-height: 100vh;
+    color: #1a4a6b;
+  }
+
+  header {
+    background: linear-gradient(135deg, #1e90ff 0%, #00bfff 60%, #87ceeb 100%);
+    padding: 2rem 1rem 1.5rem;
+    text-align: center;
+    border-bottom: 4px solid #4fc3f7;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '💧';
+    font-size: 5rem;
+    position: absolute;
+    top: -10px; left: 10px;
+    opacity: 0.18;
+  }
+  header::after {
+    content: '💧';
+    font-size: 4rem;
+    position: absolute;
+    bottom: -10px; right: 15px;
+    opacity: 0.15;
+  }
+
+  header h1 {
+    font-size: 2.2rem;
+    color: #fff;
+    text-shadow: 1px 2px 6px rgba(0,80,160,0.3);
+    letter-spacing: 1px;
+    line-height: 1.2;
+  }
+
+  header p.subtitulo {
+    color: #e0f7ff;
+    font-size: 1.05rem;
+    margin-top: 0.4rem;
+  }
+
+  .intro {
+    background: rgba(255,255,255,0.7);
+    border-radius: 16px;
+    max-width: 700px;
+    margin: 1.5rem auto;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+    color: #1a4a6b;
+    border: 1.5px solid #b0daf5;
+  }
+
+  .intro span {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    max-width: 800px;
+    margin: 1.5rem auto 0;
+    padding: 0 1rem;
+  }
+
+  .btn {
+    background: #fff;
+    color: #1565c0;
+    border: 2.5px solid #42a5f5;
+    border-radius: 50px;
+    padding: 0.75rem 1.4rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 8px rgba(30,144,255,0.10);
+  }
+
+  .btn:hover {
+    background: #1e90ff;
+    color: #fff;
+    border-color: #1e90ff;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 16px rgba(30,144,255,0.25);
+  }
+
+  .btn.ativo {
+    background: #1565c0;
+    color: #fff;
+    border-color: #1565c0;
+    box-shadow: 0 4px 14px rgba(21,101,192,0.30);
+  }
+
+  .painel {
+    display: none;
+    max-width: 750px;
+    margin: 1.5rem auto;
+    background: rgba(255,255,255,0.93);
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    border: 2px solid #90caf9;
+    box-shadow: 0 4px 24px rgba(30,144,255,0.10);
+    animation: fadeIn 0.35s ease;
+  }
+
+  .painel.aberto { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .painel h2 {
+    font-size: 1.4rem;
+    color: #1565c0;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .placeholder-video {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border: 2px dashed #42a5f5;
+    border-radius: 14px;
+    padding: 2.5rem 1rem;
+    text-align: center;
+    color: #1976d2;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .placeholder-video .icone { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
+  .placeholder-video strong { display: block; font-size: 1.1rem; color: #0d47a1; }
+  .placeholder-video small { color: #5c9ede; font-size: 0.85rem; }
+
+  .placeholder-foto {
+    background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
+    border: 2px dashed #29b6f6;
+    border-radius: 14px;
+    padding: 2.5rem 1rem;
+    text-align: center;
+    color: #0277bd;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .placeholder-foto .icone { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
+  .placeholder-foto strong { display: block; font-size: 1.1rem; color: #01579b; }
+  .placeholder-foto small { color: #4fc3f7; font-size: 0.85rem; }
+
+  .grade-fotos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  .card-filtro {
+    background: linear-gradient(135deg, #e8f4fd, #d0ebfa);
+    border-radius: 14px;
+    padding: 1.1rem 1.2rem;
+    margin-bottom: 1rem;
+    border-left: 5px solid #1e90ff;
+  }
+
+  .card-filtro h3 {
+    font-size: 1.1rem;
+    color: #0d47a1;
+    margin-bottom: 0.4rem;
+  }
+
+  .card-filtro p {
+    font-size: 0.97rem;
+    color: #1a4a6b;
+    line-height: 1.6;
+  }
+
+  .tag {
+    display: inline-block;
+    background: #bbdefb;
+    color: #0d47a1;
+    border-radius: 20px;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    margin-right: 0.3rem;
+  }
+
+  .caseiro-passo {
+    background: #e8f4fd;
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    border: 1.5px solid #90caf9;
+  }
+
+  .caseiro-passo .num {
+    background: #1e90ff;
+    color: #fff;
+    border-radius: 50%;
+    min-width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .caseiro-passo p {
+    font-size: 0.97rem;
+    color: #1a4a6b;
+    line-height: 1.5;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem 1rem 2rem;
+    color: #4a86b0;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+  }
+
+  footer strong { color: #1565c0; }
+  footer .escola { font-size: 0.82rem; margin-top: 0.2rem; color: #5c9ede; }
+
+  .aviso {
+    background: #fffde7;
+    border: 1.5px dashed #ffd54f;
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    font-size: 0.88rem;
+    color: #795548;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>💧 Filtros de Água 💧</h1>
+  <p class="subtitulo">Trabalho Escolar — 5.º Ano</p>
+</header>
+
+<div class="intro">
+  <span>🌊</span>
+  A água é essencial para a vida! Mas ela pode ter impurezas que precisam ser removidas antes de bebermos. Por isso existem os <strong>filtros de água</strong>: eles limpam e tornam a água segura para o nosso consumo.
+</div>
+
+<nav>
+  <button class="btn" onclick="mostrar('videos')" id="btn-videos">🎬 Vídeos</button>
+  <button class="btn" onclick="mostrar('fotos')" id="btn-fotos">📸 Fotos</button>
+  <button class="btn" onclick="mostrar('caseiro')" id="btn-caseiro">🏠 Filtro Caseiro</button>
+  <button class="btn" onclick="mostrar('outros')" id="btn-outros">💧 Outros Tipos de Filtro</button>
+</nav>
+
+<!-- PAINEL: Vídeos -->
+<div class="painel" id="painel-videos">
+  <h2>🎬 Vídeos</h2>
+  <div class="placeholder-video">
+    <span class="icone">▶️</span>
+    <strong>Vídeo 1 — Cole o link aqui</strong>
+    <small>Adicione o URL do vídeo do YouTube neste espaço</small>
+  </div>
+  <div class="placeholder-video">
+    <span class="icone">▶️</span>
+    <strong>Vídeo 2 — Cole o link aqui</strong>
+    <small>Adicione o URL do vídeo do YouTube neste espaço</small>
+  </div>
+  <div class="aviso">✏️ Para adicionar vídeos reais, peça ajuda para incluir os links do YouTube aqui!</div>
+</div>
+
+<!-- PAINEL: Fotos -->
+<div class="painel" id="painel-fotos">
+  <h2>📸 Fotos</h2>
+  <div class="grade-fotos">
+    <div class="placeholder-foto" style="padding:1.5rem 0.5rem;">
+      <span class="icone">🖼️</span>
+      <strong>Foto 1</strong>
+      <small>Adicionar imagem</small>
+    </div>
+    <div class="placeholder-foto" style="padding:1.5rem 0.5rem;">
+      <span class="icone">🖼️</span>
+      <strong>Foto 2</strong>
+      <small>Adicionar imagem</small>
+    </div>
+    <div class="placeholder-foto" style="padding:1.5rem 0.5rem;">
+      <span class="icone">🖼️</span>
+      <strong>Foto 3</strong>
+      <small>Adicionar imagem</small>
+    </div>
+    <div class="placeholder-foto" style="padding:1.5rem 0.5rem;">
+      <span class="icone">🖼️</span>
+      <strong>Foto 4</strong>
+      <small>Adicionar imagem</small>
+    </div>
+    <div class="placeholder-foto" style="padding:1.5rem 0.5rem;">
+      <span class="icone">🖼️</span>
+      <strong>Foto 5</strong>
+      <small>Adicionar imagem</small>
+    </div>
+    <div class="placeholder-foto" style="padding:1.5rem 0.5rem;">
+      <span class="icone">🖼️</span>
+      <strong>Foto 6</strong>
+      <small>Adicionar imagem</small>
+    </div>
+  </div>
+  <div class="aviso" style="margin-top:1rem;">✏️ Substitua os espaços acima pelas suas fotos ou imagens pesquisadas!</div>
+</div>
+
+<!-- PAINEL: Filtro Caseiro -->
+<div class="painel" id="painel-caseiro">
+  <h2>🏠 Filtro Caseiro</h2>
+  <h3 style="color:#1565c0; font-size:1.1rem; margin-bottom:0.8rem;">🍶 Preparação das garrafas</h3>
+
+  <div class="caseiro-passo">
+    <div class="num">1</div>
+    <p><strong>Limpeza:</strong> lave as duas garrafas PET e remova todos os rótulos.</p>
+  </div>
+  <div class="caseiro-passo">
+    <div class="num">2</div>
+    <p><strong>Corte principal:</strong> pegue a primeira garrafa PET e corte-a ao meio. A parte de cima (com o bocal) funcionará como funil do filtro e a parte de baixo servirá como base.</p>
+  </div>
+  <div class="caseiro-passo">
+    <div class="num">3</div>
+    <p><strong>Suporte:</strong> encaixe a parte cortada com o bocal voltado para baixo dentro da base.</p>
+  </div>
+  <div class="caseiro-passo">
+    <div class="num">4</div>
+    <p><strong>Respiro:</strong> se for usar uma segunda garrafa, corte a base dela para virar um reservatório ou tampa de apoio no topo, facilitando o despejo de água.</p>
+  </div>
+
+  <h3 style="color:#1565c0; font-size:1.1rem; margin:1.2rem 0 0.8rem;">🪨 Montagem das camadas filtrantes</h3>
+
+  <div class="caseiro-passo">
+    <div class="num">1</div>
+    <p><strong>Camada de algodão:</strong> coloque um chumaço de algodão bem no gargalo do funil, mas sem compactar demais.</p>
+  </div>
+  <div class="caseiro-passo">
+    <div class="num">2</div>
+    <p><strong>Camada de carvão:</strong> coloque uma camada de carvão moído ou em pedaços pequenos.</p>
+  </div>
+  <div class="caseiro-passo">
+    <div class="num">3</div>
+    <p><strong>Camada de areia:</strong> o ideal é usar uma camada de areia fina.</p>
+  </div>
+  <div class="caseiro-passo">
+    <div class="num">4</div>
+    <p><strong>Camada de cascalho:</strong> por fim, coloque uma camada de cascalhos.</p>
+  </div>
+</div>
+
+<!-- PAINEL: Outros Tipos -->
+<div class="painel" id="painel-outros">
+  <h2>💧 Outros Tipos de Filtro</h2>
+
+  <div class="card-filtro">
+    <span class="tag">🏺 Tradicional</span>
+    <h3>Filtro de Barro (Cerâmica)</h3>
+    <p>
+      É um dos filtros mais antigos e populares no Brasil! Feito de barro ou cerâmica porosa, ele funciona porque a água passa lentamente pelos poros pequeninos do material, deixando para trás a sujeira e algumas impurezas. Muitas famílias brasileiras usam esse filtro em casa, especialmente em regiões onde a água não é tratada. Ele é barato, natural e fácil de usar — basta trocar a vela filtrante de vez em quando!
+    </p>
+  </div>
+
+  <div class="card-filtro" style="border-left-color: #00bcd4;">
+    <span class="tag" style="background:#b2ebf2; color:#006064;">⚗️ Moderno</span>
+    <h3>Filtro de Carvão Ativado</h3>
+    <p>
+      O carvão ativado é um material especial tratado com alta temperatura para ficar cheio de microporos — buracos minúsculos invisíveis a olho nu. Quando a água passa por ele, as impurezas, o cheiro de cloro e o gosto ruim ficam "presos" nesses poros. É muito usado em filtros de torneira e purificadores modernos. O resultado é uma água mais limpa, sem cheiro e com sabor muito melhor! ✨
+    </p>
+  </div>
+</div>
+
+<footer>
+  <strong>Carolina Lopes de Pinho Pontes Vianna</strong> &amp; <strong>Laura Sousa de Salles Lima</strong>
+  <div class="escola">🏫 Colégio Doman Brasil · 5.º Ano</div>
+</footer>
+
+<script>
+  function mostrar(id) {
+    const paineis = document.querySelectorAll('.painel');
+    const btns = document.querySelectorAll('.btn');
+    paineis.forEach(p => p.classList.remove('aberto'));
+    btns.forEach(b => b.classList.remove('ativo'));
+
+    const painel = document.getElementById('painel-' + id);
+    const btn = document.getElementById('btn-' + id);
+
+    if (painel && btn) {
+      painel.classList.add('aberto');
+      btn.classList.add('ativo');
+      painel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+</script>
+
+</body>
+</html>
