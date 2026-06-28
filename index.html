@@ -338,6 +338,39 @@
 <!-- PAINEL: Filtro Caseiro -->
 <div class="painel" id="painel-caseiro">
   <h2>🏠 Filtro Caseiro</h2>
+  <button class="btn" onclick="abrirModal()" style="margin-bottom:1.3rem; background:#1e90ff; color:#fff; border-color:#1565c0;">🧰 Materiais utilizados</button>
+
+  <!-- Modal -->
+  <div id="modal-materiais" style="display:none; position:fixed; inset:0; background:rgba(0,80,160,0.35); z-index:1000; align-items:center; justify-content:center;">
+    <div style="background:#fff; border-radius:20px; padding:1.5rem 1.8rem; max-width:480px; width:90%; box-shadow:0 8px 32px rgba(30,144,255,0.25); position:relative; max-height:85vh; overflow-y:auto;">
+      <button onclick="fecharModal()" style="position:absolute; top:0.8rem; right:1rem; background:none; border:none; font-size:1.5rem; cursor:pointer; color:#1565c0;">✕</button>
+      <h3 style="color:#1565c0; font-size:1.2rem; margin-bottom:1.1rem; text-align:center;">🧰 Materiais utilizados</h3>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.9rem;">
+        <div style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9;">
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/garrafas%20pet.jpg" alt="Duas garrafas PET" style="width:100%; height:90px; object-fit:contain; border-radius:8px; margin-bottom:0.4rem;">
+          <p style="font-size:0.9rem; font-weight:700; color:#0d47a1;">Duas garrafas PET</p>
+        </div>
+        <div style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9;">
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/algodao.jpg" alt="Algodão" style="width:100%; height:90px; object-fit:contain; border-radius:8px; margin-bottom:0.4rem;">
+          <p style="font-size:0.9rem; font-weight:700; color:#0d47a1;">Algodão</p>
+        </div>
+        <div style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9;">
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/areia.png" alt="Areia" style="width:100%; height:90px; object-fit:contain; border-radius:8px; margin-bottom:0.4rem;">
+          <p style="font-size:0.9rem; font-weight:700; color:#0d47a1;">Areia</p>
+        </div>
+        <div style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9;">
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/carvao.png" alt="Carvão" style="width:100%; height:90px; object-fit:contain; border-radius:8px; margin-bottom:0.4rem;">
+          <p style="font-size:0.9rem; font-weight:700; color:#0d47a1;">Carvão</p>
+        </div>
+        <div style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9; grid-column:1/-1; max-width:50%; margin:0 auto;">
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/cascalho.png" alt="Cascalho" style="width:100%; height:90px; object-fit:contain; border-radius:8px; margin-bottom:0.4rem;">
+          <p style="font-size:0.9rem; font-weight:700; color:#0d47a1;">Cascalho</p>
+        </div>
+      </div>
+      <button onclick="fecharModal()" class="btn" style="width:100%; margin-top:1.2rem; background:#1e90ff; color:#fff; border-color:#1565c0; justify-content:center;">Fechar</button>
+    </div>
+  </div>
+
   <h3 style="color:#1565c0; font-size:1.1rem; margin-bottom:0.8rem;">🍶 Preparação das garrafas</h3>
 
   <div class="caseiro-passo">
@@ -404,6 +437,17 @@
 </footer>
 
 <script>
+  function abrirModal() {
+    const m = document.getElementById('modal-materiais');
+    m.style.display = 'flex';
+  }
+  function fecharModal() {
+    document.getElementById('modal-materiais').style.display = 'none';
+  }
+  document.getElementById('modal-materiais').addEventListener('click', function(e) {
+    if (e.target === this) fecharModal();
+  });
+
   function mostrar(id) {
     const paineis = document.querySelectorAll('.painel');
     const btns = document.querySelectorAll('.btn');
