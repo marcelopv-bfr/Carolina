@@ -270,7 +270,7 @@
 </header>
 
 <div class="intro">
-  <span>🌊</span>
+  <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/69058ef9ce659593324aac091ececf135df1ae9b/a%CC%81gua%20pota%CC%81vel.jpg" alt="Água potável" style="width:100%; max-height:220px; object-fit:cover; border-radius:12px; margin-bottom:0.8rem;">
   A água é essencial para a vida! Mas ela pode ter impurezas que precisam ser removidas antes de bebermos. Por isso existem os <strong>filtros de água</strong>: eles limpam e tornam a água segura para o nosso consumo.
 </div>
 
@@ -321,22 +321,29 @@
 <div class="painel" id="painel-fotos">
   <h2>📸 Fotos</h2>
   <div class="grade-fotos">
-    <div style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9;">
+    <div onclick="abrirFoto('https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20carva%CC%83o%20ativado.webp','Filtro de carvão ativado')" style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
       <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20carva%CC%83o%20ativado.webp" alt="Filtro de carvão ativado" style="width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:0.5rem;">
       <p style="font-size:0.88rem; font-weight:700; color:#0d47a1;">Filtro de carvão ativado</p>
     </div>
-    <div style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9;">
+    <div onclick="abrirFoto('https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20barro.webp','Filtro de barro')" style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
       <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20barro.webp" alt="Filtro de barro" style="width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:0.5rem;">
       <p style="font-size:0.88rem; font-weight:700; color:#0d47a1;">Filtro de barro</p>
     </div>
-    <div style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9;">
+    <div onclick="abrirFoto('https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20barro%20por%20dentro.jpg','Filtro de barro por dentro')" style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
       <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20barro%20por%20dentro.jpg" alt="Filtro de barro por dentro" style="width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:0.5rem;">
       <p style="font-size:0.88rem; font-weight:700; color:#0d47a1;">Filtro de barro por dentro</p>
     </div>
-    <div style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9;">
+    <div onclick="abrirFoto('https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20caseiro%202.jpeg','Filtro caseiro')" style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
       <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20caseiro%202.jpeg" alt="Filtro caseiro" style="width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:0.5rem;">
       <p style="font-size:0.88rem; font-weight:700; color:#0d47a1;">Filtro caseiro</p>
     </div>
+  </div>
+
+  <!-- Modal foto ampliada -->
+  <div id="modal-foto" onclick="fecharFoto()" style="display:none; position:fixed; inset:0; background:rgba(0,60,120,0.7); z-index:2000; align-items:center; justify-content:center; flex-direction:column;">
+    <img id="modal-foto-img" src="" alt="" style="max-width:90vw; max-height:78vh; border-radius:14px; box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+    <p id="modal-foto-legenda" style="color:#fff; font-size:1rem; font-weight:700; margin-top:0.8rem; text-shadow:0 1px 4px rgba(0,0,0,0.5);"></p>
+    <p style="color:#cce8ff; font-size:0.82rem; margin-top:0.3rem;">Clique em qualquer lugar para fechar</p>
   </div>
 </div>
 
@@ -442,6 +449,16 @@
 </footer>
 
 <script>
+  function abrirFoto(src, legenda) {
+    const m = document.getElementById('modal-foto');
+    document.getElementById('modal-foto-img').src = src;
+    document.getElementById('modal-foto-legenda').textContent = legenda;
+    m.style.display = 'flex';
+  }
+  function fecharFoto() {
+    document.getElementById('modal-foto').style.display = 'none';
+  }
+
   function abrirModal() {
     const m = document.getElementById('modal-materiais');
     m.style.display = 'flex';
