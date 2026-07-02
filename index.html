@@ -22,35 +22,10 @@
     position: relative;
     overflow: hidden;
   }
-
-  header::before {
-    content: '💧';
-    font-size: 5rem;
-    position: absolute;
-    top: -10px; left: 10px;
-    opacity: 0.18;
-  }
-  header::after {
-    content: '💧';
-    font-size: 4rem;
-    position: absolute;
-    bottom: -10px; right: 15px;
-    opacity: 0.15;
-  }
-
-  header h1 {
-    font-size: 2.2rem;
-    color: #fff;
-    text-shadow: 1px 2px 6px rgba(0,80,160,0.3);
-    letter-spacing: 1px;
-    line-height: 1.2;
-  }
-
-  header p.subtitulo {
-    color: #e0f7ff;
-    font-size: 1.05rem;
-    margin-top: 0.4rem;
-  }
+  header::before { content:'💧'; font-size:5rem; position:absolute; top:-10px; left:10px; opacity:0.18; }
+  header::after  { content:'💧'; font-size:4rem; position:absolute; bottom:-10px; right:15px; opacity:0.15; }
+  header h1 { font-size:2.2rem; color:#fff; text-shadow:1px 2px 6px rgba(0,80,160,0.3); letter-spacing:1px; line-height:1.2; }
+  header p.subtitulo { color:#e0f7ff; font-size:1.05rem; margin-top:0.4rem; }
 
   .intro {
     background: rgba(255,255,255,0.7);
@@ -62,12 +37,6 @@
     font-size: 1rem;
     color: #1a4a6b;
     border: 1.5px solid #b0daf5;
-  }
-
-  .intro span {
-    font-size: 1.5rem;
-    display: block;
-    margin-bottom: 0.3rem;
   }
 
   nav {
@@ -95,21 +64,8 @@
     gap: 0.5rem;
     box-shadow: 0 2px 8px rgba(30,144,255,0.10);
   }
-
-  .btn:hover {
-    background: #1e90ff;
-    color: #fff;
-    border-color: #1e90ff;
-    transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 4px 16px rgba(30,144,255,0.25);
-  }
-
-  .btn.ativo {
-    background: #1565c0;
-    color: #fff;
-    border-color: #1565c0;
-    box-shadow: 0 4px 14px rgba(21,101,192,0.30);
-  }
+  .btn:hover { background:#1e90ff; color:#fff; border-color:#1e90ff; transform:translateY(-2px) scale(1.04); box-shadow:0 4px 16px rgba(30,144,255,0.25); }
+  .btn.ativo { background:#1565c0; color:#fff; border-color:#1565c0; box-shadow:0 4px 14px rgba(21,101,192,0.30); }
 
   .painel {
     display: none;
@@ -122,144 +78,144 @@
     box-shadow: 0 4px 24px rgba(30,144,255,0.10);
     animation: fadeIn 0.35s ease;
   }
-
   .painel.aberto { display: block; }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from { opacity:0; transform:translateY(12px); }
+    to   { opacity:1; transform:translateY(0); }
   }
 
-  .painel h2 {
-    font-size: 1.4rem;
-    color: #1565c0;
-    margin-bottom: 1rem;
+  .painel h2 { font-size:1.4rem; color:#1565c0; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem; }
+
+  /* Grade de vídeos */
+  .grade-videos { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:0.5rem; }
+
+  .card-video {
+    background: #e8f4fd;
+    border-radius: 14px;
+    padding: 0.9rem;
+    border: 1.5px solid #90caf9;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .card-video:hover { transform: scale(1.03); }
+  .card-video p.titulo { font-weight:700; color:#0d47a1; margin-bottom:0.6rem; }
+  .card-video .thumb { position:relative; padding-bottom:177%; height:0; overflow:hidden; border-radius:10px; pointer-events:none; }
+  .card-video .thumb iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+  .card-video .hint { font-size:0.78rem; color:#1976d2; margin-top:0.5rem; }
+
+  /* Modal vídeo com setas */
+  #modal-video {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,40,100,0.78);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-video-inner {
+    background: #fff;
+    border-radius: 18px;
+    padding: 1.2rem;
+    max-width: 360px;
+    width: 90%;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    text-align: center;
+    position: relative;
+  }
+  #modal-video-titulo { font-weight:700; color:#0d47a1; margin-bottom:0.8rem; font-size:1rem; }
+  .modal-video-frame { position:relative; padding-bottom:177%; height:0; overflow:hidden; border-radius:12px; }
+  .modal-video-frame iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+
+  .modal-nav {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin-top: 0.9rem;
     gap: 0.5rem;
   }
-
-  .placeholder-video {
-    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-    border: 2px dashed #42a5f5;
-    border-radius: 14px;
-    padding: 2.5rem 1rem;
-    text-align: center;
-    color: #1976d2;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .placeholder-video .icone { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
-  .placeholder-video strong { display: block; font-size: 1.1rem; color: #0d47a1; }
-  .placeholder-video small { color: #5c9ede; font-size: 0.85rem; }
-
-  .placeholder-foto {
-    background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
-    border: 2px dashed #29b6f6;
-    border-radius: 14px;
-    padding: 2.5rem 1rem;
-    text-align: center;
-    color: #0277bd;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .placeholder-foto .icone { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
-  .placeholder-foto strong { display: block; font-size: 1.1rem; color: #01579b; }
-  .placeholder-foto small { color: #4fc3f7; font-size: 0.85rem; }
-
-  .grade-fotos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.8rem;
-    margin-top: 0.5rem;
-  }
-
-  .card-filtro {
-    background: linear-gradient(135deg, #e8f4fd, #d0ebfa);
-    border-radius: 14px;
-    padding: 1.1rem 1.2rem;
-    margin-bottom: 1rem;
-    border-left: 5px solid #1e90ff;
-  }
-
-  .card-filtro h3 {
-    font-size: 1.1rem;
-    color: #0d47a1;
-    margin-bottom: 0.4rem;
-  }
-
-  .card-filtro p {
-    font-size: 0.97rem;
-    color: #1a4a6b;
-    line-height: 1.6;
-  }
-
-  .tag {
-    display: inline-block;
-    background: #bbdefb;
-    color: #0d47a1;
-    border-radius: 20px;
-    padding: 0.2rem 0.75rem;
-    font-size: 0.82rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    margin-right: 0.3rem;
-  }
-
-  .caseiro-passo {
-    background: #e8f4fd;
-    border-radius: 12px;
-    padding: 0.85rem 1rem;
-    margin-bottom: 0.7rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.8rem;
-    border: 1.5px solid #90caf9;
-  }
-
-  .caseiro-passo .num {
+  .nav-arrow {
     background: #1e90ff;
     color: #fff;
+    border: none;
     border-radius: 50%;
-    min-width: 2rem;
-    height: 2rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    font-size: 1.2rem;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    font-size: 1rem;
+    transition: background 0.2s;
     flex-shrink: 0;
   }
+  .nav-arrow:hover { background:#1565c0; }
+  .nav-arrow:disabled { background:#b0d0f0; cursor:default; }
+  .nav-counter { font-size:0.85rem; color:#5c9ede; flex:1; }
+  .btn-fechar-video { background:#e8f4fd; color:#1565c0; border:2px solid #90caf9; border-radius:50px; padding:0.5rem 1.2rem; font-weight:700; cursor:pointer; font-size:0.9rem; }
+  .btn-fechar-video:hover { background:#1e90ff; color:#fff; border-color:#1e90ff; }
 
-  .caseiro-passo p {
-    font-size: 0.97rem;
-    color: #1a4a6b;
-    line-height: 1.5;
+  /* Seção título vídeos */
+  .secao-titulo {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1565c0;
+    margin: 1.2rem 0 0.6rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid #90caf9;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
   }
 
-  footer {
+  /* Fotos */
+  .grade-fotos { display:grid; grid-template-columns:repeat(2,1fr); gap:0.8rem; margin-top:0.5rem; }
+  .card-foto {
+    background: #e8f4fd;
+    border-radius: 12px;
+    padding: 0.8rem;
     text-align: center;
-    padding: 1.5rem 1rem 2rem;
-    color: #4a86b0;
-    font-size: 0.9rem;
-    margin-top: 2rem;
+    border: 1.5px solid #90caf9;
+    cursor: pointer;
+    transition: transform 0.2s;
   }
+  .card-foto:hover { transform:scale(1.03); }
+  .card-foto img { width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:0.5rem; }
+  .card-foto p { font-size:0.88rem; font-weight:700; color:#0d47a1; }
 
-  footer strong { color: #1565c0; }
-  footer .escola { font-size: 0.82rem; margin-top: 0.2rem; color: #5c9ede; }
-
-  .aviso {
-    background: #fffde7;
-    border: 1.5px dashed #ffd54f;
-    border-radius: 10px;
-    padding: 0.7rem 1rem;
-    font-size: 0.88rem;
-    color: #795548;
-    margin-top: 0.5rem;
-    text-align: center;
+  /* Modal foto */
+  #modal-foto {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,60,120,0.7);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
+  #modal-foto img { max-width:90vw; max-height:78vh; border-radius:14px; box-shadow:0 8px 32px rgba(0,0,0,0.4); }
+  #modal-foto-legenda { color:#fff; font-size:1rem; font-weight:700; margin-top:0.8rem; text-shadow:0 1px 4px rgba(0,0,0,0.5); }
+  #modal-foto p.dica { color:#cce8ff; font-size:0.82rem; margin-top:0.3rem; }
+
+  /* Filtro caseiro */
+  .caseiro-passo { background:#e8f4fd; border-radius:12px; padding:0.85rem 1rem; margin-bottom:0.7rem; display:flex; align-items:flex-start; gap:0.8rem; border:1.5px solid #90caf9; }
+  .caseiro-passo .num { background:#1e90ff; color:#fff; border-radius:50%; min-width:2rem; height:2rem; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1rem; flex-shrink:0; }
+  .caseiro-passo p { font-size:0.97rem; color:#1a4a6b; line-height:1.5; }
+
+  /* Cards filtros */
+  .card-filtro { background:linear-gradient(135deg,#e8f4fd,#d0ebfa); border-radius:14px; padding:1.1rem 1.2rem; margin-bottom:1rem; border-left:5px solid #1e90ff; }
+  .card-filtro h3 { font-size:1.1rem; color:#0d47a1; margin-bottom:0.4rem; }
+  .card-filtro p { font-size:0.97rem; color:#1a4a6b; line-height:1.6; }
+  .tag { display:inline-block; background:#bbdefb; color:#0d47a1; border-radius:20px; padding:0.2rem 0.75rem; font-size:0.82rem; font-weight:700; margin-bottom:0.5rem; }
+
+  .aviso { background:#fffde7; border:1.5px dashed #ffd54f; border-radius:10px; padding:0.7rem 1rem; font-size:0.88rem; color:#795548; margin-top:0.5rem; text-align:center; }
+
+  footer { text-align:center; padding:1.5rem 1rem 2rem; color:#4a86b0; font-size:0.9rem; margin-top:2rem; }
+  footer strong { color:#1565c0; }
+  footer .escola { font-size:0.82rem; margin-top:0.2rem; color:#5c9ede; }
 </style>
 </head>
 <body>
@@ -270,192 +226,163 @@
 </header>
 
 <div class="intro">
-  <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/69058ef9ce659593324aac091ececf135df1ae9b/a%CC%81gua%20pota%CC%81vel.jpg" alt="Água potável" style="width:100%; max-height:220px; object-fit:cover; border-radius:12px; margin-bottom:0.8rem;">
+  <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/69058ef9ce659593324aac091ececf135df1ae9b/a%CC%81gua%20pota%CC%81vel.jpg" alt="Água potável" style="width:100%;max-height:220px;object-fit:cover;border-radius:12px;margin-bottom:0.8rem;">
   A água é essencial para a vida! Mas ela pode ter impurezas que precisam ser removidas antes de bebermos. Por isso existem os <strong>filtros de água</strong>: eles limpam e tornam a água segura para o nosso consumo.
 </div>
 
 <nav>
   <button class="btn" onclick="mostrar('caseiro')" id="btn-caseiro">🏠 Filtro Caseiro</button>
-  <button class="btn" onclick="mostrar('videos')" id="btn-videos">🎬 Vídeos</button>
-  <button class="btn" onclick="mostrar('outros')" id="btn-outros">💧 Outros Tipos de Filtro</button>
-  <button class="btn" onclick="mostrar('fotos')" id="btn-fotos">📸 Fotos</button>
+  <button class="btn" onclick="mostrar('videos')"  id="btn-videos">🎬 Vídeos</button>
+  <button class="btn" onclick="mostrar('outros')"  id="btn-outros">💧 Outros Tipos de Filtro</button>
+  <button class="btn" onclick="mostrar('fotos')"   id="btn-fotos">📸 Fotos</button>
 </nav>
 
-<!-- PAINEL: Vídeos -->
+<!-- ===== PAINEL: VÍDEOS ===== -->
 <div class="painel" id="painel-videos">
-  <h2>🎬 Função dos Materiais</h2>
+  <h2>🎬 Vídeos</h2>
 
-  <!-- Modal vídeo -->
-  <div id="modal-video" onclick="fecharVideo()" style="display:none; position:fixed; inset:0; background:rgba(0,40,100,0.75); z-index:2000; align-items:center; justify-content:center; flex-direction:column;">
-    <div onclick="event.stopPropagation()" style="background:#fff; border-radius:18px; padding:1.2rem; max-width:360px; width:90%; box-shadow:0 8px 32px rgba(0,0,0,0.4); text-align:center;">
-      <p id="modal-video-titulo" style="font-weight:700; color:#0d47a1; margin-bottom:0.8rem; font-size:1rem;"></p>
-      <div style="position:relative; padding-bottom:177%; height:0; overflow:hidden; border-radius:12px;">
-        <iframe id="modal-video-iframe" src="" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allowfullscreen allow="autoplay"></iframe>
-      </div>
-      <button onclick="fecharVideo()" class="btn" style="margin-top:1rem; width:100%; background:#1e90ff; color:#fff; border-color:#1565c0; justify-content:center;">✕ Fechar</button>
+  <div class="secao-titulo">🧪 Função dos Materiais</div>
+  <div class="grade-videos">
+    <div class="card-video" onclick="abrirVideo(0)">
+      <p class="titulo">🍶 Garrafa PET</p>
+      <div class="thumb"><iframe src="https://www.youtube.com/embed/ogP93C74tqg"></iframe></div>
+      <p class="hint">▶ Clique para assistir</p>
+    </div>
+    <div class="card-video" onclick="abrirVideo(1)">
+      <p class="titulo">🪨 Cascalhos</p>
+      <div class="thumb"><iframe src="https://www.youtube.com/embed/VkVNLuM-maI"></iframe></div>
+      <p class="hint">▶ Clique para assistir</p>
+    </div>
+    <div class="card-video" onclick="abrirVideo(2)">
+      <p class="titulo">🏖️ Areia grossa e fina</p>
+      <div class="thumb"><iframe src="https://www.youtube.com/embed/_M-HvBFQSrc"></iframe></div>
+      <p class="hint">▶ Clique para assistir</p>
+    </div>
+    <div class="card-video" onclick="abrirVideo(3)">
+      <p class="titulo">🌸 Algodão</p>
+      <div class="thumb"><iframe src="https://www.youtube.com/embed/G_Ty5to0vwU"></iframe></div>
+      <p class="hint">▶ Clique para assistir</p>
     </div>
   </div>
 
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:0.5rem;">
-
-    <div onclick="abrirVideo('https://www.youtube.com/embed/ogP93C74tqg?autoplay=1','🍶 Garrafa PET')" style="background:#e8f4fd; border-radius:14px; padding:0.9rem; border:1.5px solid #90caf9; text-align:center; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-      <p style="font-weight:700; color:#0d47a1; margin-bottom:0.6rem;">🍶 Garrafa PET</p>
-      <div style="position:relative; padding-bottom:177%; height:0; overflow:hidden; border-radius:10px; pointer-events:none;">
-        <iframe src="https://www.youtube.com/embed/ogP93C74tqg" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"></iframe>
-      </div>
-      <p style="font-size:0.78rem; color:#1976d2; margin-top:0.5rem;">▶ Clique para assistir</p>
+  <div class="secao-titulo" style="margin-top:1.6rem;">🔍 Diferença entre Filtros</div>
+  <div class="grade-videos">
+    <div class="card-video" onclick="abrirVideo(4)" style="grid-column:1/-1;max-width:260px;margin:0 auto;">
+      <p class="titulo">💧 Diferença entre Filtros</p>
+      <div class="thumb"><iframe src="https://www.youtube.com/embed/XzQwcWpeGYw"></iframe></div>
+      <p class="hint">▶ Clique para assistir</p>
     </div>
-
-    <div onclick="abrirVideo('https://www.youtube.com/embed/VkVNLuM-maI?autoplay=1','🪨 Cascalhos')" style="background:#e8f4fd; border-radius:14px; padding:0.9rem; border:1.5px solid #90caf9; text-align:center; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-      <p style="font-weight:700; color:#0d47a1; margin-bottom:0.6rem;">🪨 Cascalhos</p>
-      <div style="position:relative; padding-bottom:177%; height:0; overflow:hidden; border-radius:10px; pointer-events:none;">
-        <iframe src="https://www.youtube.com/embed/VkVNLuM-maI" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"></iframe>
-      </div>
-      <p style="font-size:0.78rem; color:#1976d2; margin-top:0.5rem;">▶ Clique para assistir</p>
-    </div>
-
-    <div onclick="abrirVideo('https://www.youtube.com/embed/_M-HvBFQSrc?autoplay=1','🏖️ Areia grossa e fina')" style="background:#e8f4fd; border-radius:14px; padding:0.9rem; border:1.5px solid #90caf9; text-align:center; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-      <p style="font-weight:700; color:#0d47a1; margin-bottom:0.6rem;">🏖️ Areia grossa e fina</p>
-      <div style="position:relative; padding-bottom:177%; height:0; overflow:hidden; border-radius:10px; pointer-events:none;">
-        <iframe src="https://www.youtube.com/embed/_M-HvBFQSrc" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"></iframe>
-      </div>
-      <p style="font-size:0.78rem; color:#1976d2; margin-top:0.5rem;">▶ Clique para assistir</p>
-    </div>
-
-    <div onclick="abrirVideo('https://www.youtube.com/embed/G_Ty5to0vwU?autoplay=1','🌸 Algodão')" style="background:#e8f4fd; border-radius:14px; padding:0.9rem; border:1.5px solid #90caf9; text-align:center; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-      <p style="font-weight:700; color:#0d47a1; margin-bottom:0.6rem;">🌸 Algodão</p>
-      <div style="position:relative; padding-bottom:177%; height:0; overflow:hidden; border-radius:10px; pointer-events:none;">
-        <iframe src="https://www.youtube.com/embed/G_Ty5to0vwU" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"></iframe>
-      </div>
-      <p style="font-size:0.78rem; color:#1976d2; margin-top:0.5rem;">▶ Clique para assistir</p>
-    </div>
-
   </div>
 </div>
 
-<!-- PAINEL: Fotos -->
+<!-- Modal vídeo com setas -->
+<div id="modal-video">
+  <div class="modal-video-inner">
+    <p id="modal-video-titulo"></p>
+    <div class="modal-video-frame">
+      <iframe id="modal-video-iframe" src="" allowfullscreen allow="autoplay"></iframe>
+    </div>
+    <div class="modal-nav">
+      <button class="nav-arrow" id="btn-prev" onclick="navVideo(-1)">&#8592;</button>
+      <span class="nav-counter" id="nav-counter"></span>
+      <button class="nav-arrow" id="btn-next" onclick="navVideo(1)">&#8594;</button>
+    </div>
+    <button class="btn-fechar-video" onclick="fecharVideo()" style="margin-top:0.8rem;width:100%;">✕ Fechar</button>
+  </div>
+</div>
+
+<!-- ===== PAINEL: FOTOS ===== -->
 <div class="painel" id="painel-fotos">
   <h2>📸 Fotos</h2>
   <div class="grade-fotos">
-    <div onclick="abrirFoto('https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20carva%CC%83o%20ativado.webp','Filtro de carvão ativado')" style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-      <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20carva%CC%83o%20ativado.webp" alt="Filtro de carvão ativado" style="width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:0.5rem;">
-      <p style="font-size:0.88rem; font-weight:700; color:#0d47a1;">Filtro de carvão ativado</p>
+    <div class="card-foto" onclick="abrirFoto('https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20carva%CC%83o%20ativado.webp','Filtro de carvão ativado')">
+      <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20carva%CC%83o%20ativado.webp" alt="Filtro de carvão ativado">
+      <p>Filtro de carvão ativado</p>
     </div>
-    <div onclick="abrirFoto('https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20barro.webp','Filtro de barro')" style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-      <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20barro.webp" alt="Filtro de barro" style="width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:0.5rem;">
-      <p style="font-size:0.88rem; font-weight:700; color:#0d47a1;">Filtro de barro</p>
+    <div class="card-foto" onclick="abrirFoto('https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20barro.webp','Filtro de barro')">
+      <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20barro.webp" alt="Filtro de barro">
+      <p>Filtro de barro</p>
     </div>
-    <div onclick="abrirFoto('https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20barro%20por%20dentro.jpg','Filtro de barro por dentro')" style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-      <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20barro%20por%20dentro.jpg" alt="Filtro de barro por dentro" style="width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:0.5rem;">
-      <p style="font-size:0.88rem; font-weight:700; color:#0d47a1;">Filtro de barro por dentro</p>
+    <div class="card-foto" onclick="abrirFoto('https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20barro%20por%20dentro.jpg','Filtro de barro por dentro')">
+      <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20de%20barro%20por%20dentro.jpg" alt="Filtro de barro por dentro">
+      <p>Filtro de barro por dentro</p>
     </div>
-    <div onclick="abrirFoto('https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20caseiro%202.jpeg','Filtro caseiro')" style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-      <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20caseiro%202.jpeg" alt="Filtro caseiro" style="width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:0.5rem;">
-      <p style="font-size:0.88rem; font-weight:700; color:#0d47a1;">Filtro caseiro</p>
+    <div class="card-foto" onclick="abrirFoto('https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20caseiro%202.jpeg','Filtro caseiro')">
+      <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/57664c2a6f7c57b8449a9710e6dae0cc1e26908a/Filtro%20caseiro%202.jpeg" alt="Filtro caseiro">
+      <p>Filtro caseiro</p>
     </div>
-  </div>
-
-  <!-- Modal foto ampliada -->
-  <div id="modal-foto" onclick="fecharFoto()" style="display:none; position:fixed; inset:0; background:rgba(0,60,120,0.7); z-index:2000; align-items:center; justify-content:center; flex-direction:column;">
-    <img id="modal-foto-img" src="" alt="" style="max-width:90vw; max-height:78vh; border-radius:14px; box-shadow:0 8px 32px rgba(0,0,0,0.4);">
-    <p id="modal-foto-legenda" style="color:#fff; font-size:1rem; font-weight:700; margin-top:0.8rem; text-shadow:0 1px 4px rgba(0,0,0,0.5);"></p>
-    <p style="color:#cce8ff; font-size:0.82rem; margin-top:0.3rem;">Clique em qualquer lugar para fechar</p>
   </div>
 </div>
 
-<!-- PAINEL: Filtro Caseiro -->
+<!-- Modal foto -->
+<div id="modal-foto" onclick="fecharFoto()">
+  <img id="modal-foto-img" src="" alt="">
+  <p id="modal-foto-legenda"></p>
+  <p class="dica">Clique em qualquer lugar para fechar</p>
+</div>
+
+<!-- ===== PAINEL: FILTRO CASEIRO ===== -->
 <div class="painel" id="painel-caseiro">
   <h2>🏠 Filtro Caseiro</h2>
+
   <button class="btn" onclick="abrirModal()" style="margin-bottom:1.3rem; background:#1e90ff; color:#fff; border-color:#1565c0;">🧰 Materiais utilizados</button>
 
-  <!-- Modal -->
+  <!-- Modal materiais -->
   <div id="modal-materiais" style="display:none; position:fixed; inset:0; background:rgba(0,80,160,0.35); z-index:1000; align-items:center; justify-content:center;">
     <div style="background:#fff; border-radius:20px; padding:1.5rem 1.8rem; max-width:480px; width:90%; box-shadow:0 8px 32px rgba(30,144,255,0.25); position:relative; max-height:85vh; overflow-y:auto;">
       <button onclick="fecharModal()" style="position:absolute; top:0.8rem; right:1rem; background:none; border:none; font-size:1.5rem; cursor:pointer; color:#1565c0;">✕</button>
       <h3 style="color:#1565c0; font-size:1.2rem; margin-bottom:1.1rem; text-align:center;">🧰 Materiais utilizados</h3>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.9rem;">
         <div style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9;">
-          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/garrafas%20pet.jpg" alt="Duas garrafas PET" style="width:100%; height:90px; object-fit:contain; border-radius:8px; margin-bottom:0.4rem;">
-          <p style="font-size:0.9rem; font-weight:700; color:#0d47a1;">Duas garrafas PET</p>
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/garrafas%20pet.jpg" alt="Duas garrafas PET" style="width:100%;height:90px;object-fit:contain;border-radius:8px;margin-bottom:0.4rem;">
+          <p style="font-size:0.9rem;font-weight:700;color:#0d47a1;">Duas garrafas PET</p>
         </div>
         <div style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9;">
-          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/algodao.jpg" alt="Algodão" style="width:100%; height:90px; object-fit:contain; border-radius:8px; margin-bottom:0.4rem;">
-          <p style="font-size:0.9rem; font-weight:700; color:#0d47a1;">Algodão</p>
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/algodao.jpg" alt="Algodão" style="width:100%;height:90px;object-fit:contain;border-radius:8px;margin-bottom:0.4rem;">
+          <p style="font-size:0.9rem;font-weight:700;color:#0d47a1;">Algodão</p>
         </div>
         <div style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9;">
-          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/areia.png" alt="Areia" style="width:100%; height:90px; object-fit:contain; border-radius:8px; margin-bottom:0.4rem;">
-          <p style="font-size:0.9rem; font-weight:700; color:#0d47a1;">Areia</p>
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/areia.png" alt="Areia" style="width:100%;height:90px;object-fit:contain;border-radius:8px;margin-bottom:0.4rem;">
+          <p style="font-size:0.9rem;font-weight:700;color:#0d47a1;">Areia</p>
         </div>
         <div style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9;">
-          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/carvao.png" alt="Carvão" style="width:100%; height:90px; object-fit:contain; border-radius:8px; margin-bottom:0.4rem;">
-          <p style="font-size:0.9rem; font-weight:700; color:#0d47a1;">Carvão</p>
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/carvao.png" alt="Carvão" style="width:100%;height:90px;object-fit:contain;border-radius:8px;margin-bottom:0.4rem;">
+          <p style="font-size:0.9rem;font-weight:700;color:#0d47a1;">Carvão</p>
         </div>
         <div style="background:#e8f4fd; border-radius:12px; padding:0.8rem; text-align:center; border:1.5px solid #90caf9; grid-column:1/-1; max-width:50%; margin:0 auto;">
-          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/cascalho.png" alt="Cascalho" style="width:100%; height:90px; object-fit:contain; border-radius:8px; margin-bottom:0.4rem;">
-          <p style="font-size:0.9rem; font-weight:700; color:#0d47a1;">Cascalho</p>
+          <img src="https://raw.githubusercontent.com/marcelopv-bfr/Carolina/319d9394921a725667e4df1b162b0d1893a091c2/cascalho.png" alt="Cascalho" style="width:100%;height:90px;object-fit:contain;border-radius:8px;margin-bottom:0.4rem;">
+          <p style="font-size:0.9rem;font-weight:700;color:#0d47a1;">Cascalho</p>
         </div>
       </div>
-      <button onclick="fecharModal()" class="btn" style="width:100%; margin-top:1.2rem; background:#1e90ff; color:#fff; border-color:#1565c0; justify-content:center;">Fechar</button>
+      <button onclick="fecharModal()" class="btn" style="width:100%;margin-top:1.2rem;background:#1e90ff;color:#fff;border-color:#1565c0;justify-content:center;">Fechar</button>
     </div>
   </div>
 
-  <h3 style="color:#1565c0; font-size:1.1rem; margin-bottom:0.8rem;">🍶 Preparação das garrafas</h3>
+  <h3 style="color:#1565c0;font-size:1.1rem;margin-bottom:0.8rem;">🍶 Preparação das garrafas</h3>
+  <div class="caseiro-passo"><div class="num">1</div><p><strong>Limpeza:</strong> lave as duas garrafas PET e remova todos os rótulos.</p></div>
+  <div class="caseiro-passo"><div class="num">2</div><p><strong>Corte principal:</strong> pegue a primeira garrafa PET e corte-a ao meio. A parte de cima (com o bocal) funcionará como funil do filtro e a parte de baixo servirá como base.</p></div>
+  <div class="caseiro-passo"><div class="num">3</div><p><strong>Suporte:</strong> encaixe a parte cortada com o bocal voltado para baixo dentro da base.</p></div>
+  <div class="caseiro-passo"><div class="num">4</div><p><strong>Respiro:</strong> se for usar uma segunda garrafa, corte a base dela para virar um reservatório ou tampa de apoio no topo, facilitando o despejo de água.</p></div>
 
-  <div class="caseiro-passo">
-    <div class="num">1</div>
-    <p><strong>Limpeza:</strong> lave as duas garrafas PET e remova todos os rótulos.</p>
-  </div>
-  <div class="caseiro-passo">
-    <div class="num">2</div>
-    <p><strong>Corte principal:</strong> pegue a primeira garrafa PET e corte-a ao meio. A parte de cima (com o bocal) funcionará como funil do filtro e a parte de baixo servirá como base.</p>
-  </div>
-  <div class="caseiro-passo">
-    <div class="num">3</div>
-    <p><strong>Suporte:</strong> encaixe a parte cortada com o bocal voltado para baixo dentro da base.</p>
-  </div>
-  <div class="caseiro-passo">
-    <div class="num">4</div>
-    <p><strong>Respiro:</strong> se for usar uma segunda garrafa, corte a base dela para virar um reservatório ou tampa de apoio no topo, facilitando o despejo de água.</p>
-  </div>
-
-  <h3 style="color:#1565c0; font-size:1.1rem; margin:1.2rem 0 0.8rem;">🪨 Montagem das camadas filtrantes</h3>
-
-  <div class="caseiro-passo">
-    <div class="num">1</div>
-    <p><strong>Camada de algodão:</strong> coloque um chumaço de algodão bem no gargalo do funil, mas sem compactar demais.</p>
-  </div>
-  <div class="caseiro-passo">
-    <div class="num">2</div>
-    <p><strong>Camada de carvão:</strong> coloque uma camada de carvão moído ou em pedaços pequenos.</p>
-  </div>
-  <div class="caseiro-passo">
-    <div class="num">3</div>
-    <p><strong>Camada de areia:</strong> o ideal é usar uma camada de areia fina.</p>
-  </div>
-  <div class="caseiro-passo">
-    <div class="num">4</div>
-    <p><strong>Camada de cascalho:</strong> por fim, coloque uma camada de cascalhos.</p>
-  </div>
+  <h3 style="color:#1565c0;font-size:1.1rem;margin:1.2rem 0 0.8rem;">🪨 Montagem das camadas filtrantes</h3>
+  <div class="caseiro-passo"><div class="num">1</div><p><strong>Camada de algodão:</strong> coloque um chumaço de algodão bem no gargalo do funil, mas sem compactar demais.</p></div>
+  <div class="caseiro-passo"><div class="num">2</div><p><strong>Camada de carvão:</strong> coloque uma camada de carvão moído ou em pedaços pequenos.</p></div>
+  <div class="caseiro-passo"><div class="num">3</div><p><strong>Camada de areia:</strong> o ideal é usar uma camada de areia fina.</p></div>
+  <div class="caseiro-passo"><div class="num">4</div><p><strong>Camada de cascalho:</strong> por fim, coloque uma camada de cascalhos.</p></div>
 </div>
 
-<!-- PAINEL: Outros Tipos -->
+<!-- ===== PAINEL: OUTROS FILTROS ===== -->
 <div class="painel" id="painel-outros">
   <h2>💧 Outros Tipos de Filtro</h2>
-
   <div class="card-filtro">
     <span class="tag">🏺 Tradicional</span>
     <h3>Filtro de Barro (Cerâmica)</h3>
-    <p>
-      É um dos filtros mais antigos e populares no Brasil! Feito de barro ou cerâmica porosa, ele funciona porque a água passa lentamente pelos poros pequeninos do material, deixando para trás a sujeira e algumas impurezas. Muitas famílias brasileiras usam esse filtro em casa, especialmente em regiões onde a água não é tratada. Ele é barato, natural e fácil de usar — basta trocar a vela filtrante de vez em quando!
-    </p>
+    <p>É um dos filtros mais antigos e populares no Brasil! Feito de barro ou cerâmica porosa, ele funciona porque a água passa lentamente pelos poros pequeninos do material, deixando para trás a sujeira e algumas impurezas. Muitas famílias brasileiras usam esse filtro em casa, especialmente em regiões onde a água não é tratada. Ele é barato, natural e fácil de usar — basta trocar a vela filtrante de vez em quando!</p>
   </div>
-
-  <div class="card-filtro" style="border-left-color: #00bcd4;">
-    <span class="tag" style="background:#b2ebf2; color:#006064;">⚗️ Moderno</span>
+  <div class="card-filtro" style="border-left-color:#00bcd4;">
+    <span class="tag" style="background:#b2ebf2;color:#006064;">⚗️ Moderno</span>
     <h3>Filtro de Carvão Ativado</h3>
-    <p>
-      O carvão ativado é um material especial tratado com alta temperatura para ficar cheio de microporos — buracos minúsculos invisíveis a olho nu. Quando a água passa por ele, as impurezas, o cheiro de cloro e o gosto ruim ficam "presos" nesses poros. É muito usado em filtros de torneira e purificadores modernos. O resultado é uma água mais limpa, sem cheiro e com sabor muito melhor! ✨
-    </p>
+    <p>O carvão ativado é um material especial tratado com alta temperatura para ficar cheio de microporos — buracos minúsculos invisíveis a olho nu. Quando a água passa por ele, as impurezas, o cheiro de cloro e o gosto ruim ficam "presos" nesses poros. É muito usado em filtros de torneira e purificadores modernos. O resultado é uma água mais limpa, sem cheiro e com sabor muito melhor! ✨</p>
   </div>
 </div>
 
@@ -465,29 +392,64 @@
 </footer>
 
 <script>
-  function abrirVideo(src, titulo) {
-    document.getElementById('modal-video-iframe').src = src;
-    document.getElementById('modal-video-titulo').textContent = titulo;
+  // Lista global de vídeos (índice único)
+  const videos = [
+    { titulo: '🍶 Garrafa PET',         id: 'ogP93C74tqg' },
+    { titulo: '🪨 Cascalhos',           id: 'VkVNLuM-maI' },
+    { titulo: '🏖️ Areia grossa e fina', id: '_M-HvBFQSrc' },
+    { titulo: '🌸 Algodão',             id: 'G_Ty5to0vwU' },
+    { titulo: '💧 Diferença entre Filtros', id: 'XzQwcWpeGYw' },
+  ];
+  let videoAtual = 0;
+
+  function abrirVideo(idx) {
+    videoAtual = idx;
+    renderVideo();
     document.getElementById('modal-video').style.display = 'flex';
   }
+
+  function renderVideo() {
+    const v = videos[videoAtual];
+    document.getElementById('modal-video-titulo').textContent = v.titulo;
+    document.getElementById('modal-video-iframe').src =
+      'https://www.youtube.com/embed/' + v.id + '?autoplay=1';
+    document.getElementById('nav-counter').textContent =
+      (videoAtual + 1) + ' / ' + videos.length;
+    document.getElementById('btn-prev').disabled = videoAtual === 0;
+    document.getElementById('btn-next').disabled = videoAtual === videos.length - 1;
+  }
+
+  function navVideo(dir) {
+    const novo = videoAtual + dir;
+    if (novo >= 0 && novo < videos.length) {
+      videoAtual = novo;
+      // Para o vídeo atual antes de trocar
+      document.getElementById('modal-video-iframe').src = '';
+      setTimeout(renderVideo, 80);
+    }
+  }
+
   function fecharVideo() {
     document.getElementById('modal-video-iframe').src = '';
     document.getElementById('modal-video').style.display = 'none';
   }
 
+  // Fechar modal vídeo ao clicar no fundo
+  document.getElementById('modal-video').addEventListener('click', function(e) {
+    if (e.target === this) fecharVideo();
+  });
+
   function abrirFoto(src, legenda) {
-    const m = document.getElementById('modal-foto');
     document.getElementById('modal-foto-img').src = src;
     document.getElementById('modal-foto-legenda').textContent = legenda;
-    m.style.display = 'flex';
+    document.getElementById('modal-foto').style.display = 'flex';
   }
   function fecharFoto() {
     document.getElementById('modal-foto').style.display = 'none';
   }
 
   function abrirModal() {
-    const m = document.getElementById('modal-materiais');
-    m.style.display = 'flex';
+    document.getElementById('modal-materiais').style.display = 'flex';
   }
   function fecharModal() {
     document.getElementById('modal-materiais').style.display = 'none';
@@ -497,21 +459,12 @@
   });
 
   function mostrar(id) {
-    const paineis = document.querySelectorAll('.painel');
-    const btns = document.querySelectorAll('.btn');
-    paineis.forEach(p => p.classList.remove('aberto'));
-    btns.forEach(b => b.classList.remove('ativo'));
-
-    const painel = document.getElementById('painel-' + id);
-    const btn = document.getElementById('btn-' + id);
-
-    if (painel && btn) {
-      painel.classList.add('aberto');
-      btn.classList.add('ativo');
-      painel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
+    document.querySelectorAll('.painel').forEach(p => p.classList.remove('aberto'));
+    document.querySelectorAll('.btn').forEach(b => b.classList.remove('ativo'));
+    document.getElementById('painel-' + id).classList.add('aberto');
+    document.getElementById('btn-' + id).classList.add('ativo');
+    document.getElementById('painel-' + id).scrollIntoView({ behavior:'smooth', block:'nearest' });
   }
 </script>
-
 </body>
 </html>
